@@ -17,7 +17,7 @@ export default class lifecycle extends Component {
     
     getNews = async () => {
         try {
-            let response = await axios.get(`https://newsapi.org/v2/everything?q=tesla&from=2022-02-05&sortBy=publishedAt&apiKey=4da4024fcb0b490cb56b031302a4a808`)
+            let response = await axios.get(`https://newsapi.org/v2/everything?q=${this.state.news}&from=2022-02-05&sortBy=publishedAt&apiKey=4da4024fcb0b490cb56b031302a4a808`)
             console.log(response.data.articles)
             this.setState({dataApi : response.data.articles})
         } catch(e) {
@@ -27,6 +27,7 @@ export default class lifecycle extends Component {
     
     searchNews = (e) => {
         e.preventDefault();
+        
         
         this.getNews();
     }
@@ -38,7 +39,8 @@ export default class lifecycle extends Component {
             <div>
             <form onSubmit={this.searchNews}>
                 <label className='label'>Searching News with NewsAPI</label>
-                <input type="text" name="news" value={this.state.news} className='form-control my-1' onChange={this.changeNews} placeholder='input your search in here' />
+                <input type="text" name="news" value={this.state.news} className='form-control my-1' 
+                onChange={this.changeNews} placeholder=' search in here' />
                 <input type="submit" value="Submit" className='btn btn-primary' />
             </form>
             <div className="row">
